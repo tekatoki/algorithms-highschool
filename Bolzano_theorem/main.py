@@ -22,6 +22,17 @@ def main() -> None:
         print('Error')
 
 
+def calculation_func_value (func:dict, var_value:float) -> float:
+    '''
+    Calculates de value of f(x). var_value is the value for x. Returns the result of the function.
+    '''
+    
+    temp_result:float = 0 # stores the calculations 
+    for key in func:
+        temp_result += ( (func[key]) * (var_value ** int(key)) ) # a{func[key]} * x{var_value} ** n
+    
+    return temp_result # f(x)
+
 def define_function() -> dict:
     '''
     Key:degree value:number
