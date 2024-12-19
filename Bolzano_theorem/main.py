@@ -17,10 +17,33 @@ def main() -> None:
             interval[i] = float(interval[i])
             i += 1
         interval:tuple = tuple(interval)
-    
+        
+        precision:int = input('How precise do you want the program to be [insert a number]>')
     except:
         print('Error')
+    
 
+    # Starts Bolzano's theorem
+    var_value:list = list(interval).sort()
+        
+    if ( calculation_func_value(function1, var_value[0]) or calculation_func_value(function2, var_value[1]) ) == 0:
+        # Case that we already know that one function == 0
+        if calculation_func_value(function1, var_value[0]) == 0:
+            print(f'f(x) = 0 when x = {var_value[0]}')
+        elif calculation_func_value(function2, var_value[1]):
+            print(f'g(x) = 0 when x = {var_value[1]}')
+        
+    
+    if calculation_func_value(function1, var_value[0]) * calculation_func_value(function2, var_value[1]) < 0:
+        # Is possible to apply the theorem
+        while calculation_func_value(function1, var_value[0]) * calculation_func_value(function2, var_value[1]) < 0:
+            var_value[0] -= 1 / (10 ** precision)
+            var_value[1] -= 1 / (10 ** precision)
+            
+        print(f"There is c in ({var_value[0], var_value[1]}) = 0")
+    
+    else:
+        print("It's not possible to apply Bolzano's theorem")
 
 def calculation_func_value (func:dict, var_value:float) -> float:
     '''
